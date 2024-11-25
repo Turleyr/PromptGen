@@ -1,0 +1,21 @@
+import openai
+import streamlit as st
+
+openai.api_key = "your_openai_api_key"
+
+st.title("AI Writing Prompt Generator")
+
+genre = st.selectbox("Select Genre", ["Fantasy", "Sci-Fi", "Romance"])
+theme = st.text_input("Enter a Theme")
+keyword = st.text_input("Optional Keyword")
+
+if st.button("Generate Prompt"):
+    prompt = f"Generate a {genre} story prompt about {theme}"
+    if keyword:
+        prompt += f" and include {keyword}."
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=50
+    )
+    st.write(response.choices[0].text.strip())
