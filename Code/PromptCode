@@ -19,3 +19,6 @@ if st.button("Generate Prompt"):
         max_tokens=50
     )
     st.write(response.choices[0].text.strip())
+
+streamlit run Prompt_Gen.py
+
